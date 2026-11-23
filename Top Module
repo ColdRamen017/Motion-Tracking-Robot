@@ -1,0 +1,23 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity top_motor_demo is
+  Port (
+    sensor_forward : in std_logic;
+    sensor_left : in std_logic;
+    sensor_right : in std_logic;
+    motor_left : out std_logic;
+    motor_right : out std_logic
+  );
+end top_motor_demo;
+
+architecture Behavioral of top_motor_demo is
+  begin
+    motor_control: entity work.motor_logic
+    port map (
+      sensor_forward => sensor_forward,
+      sensor_left => sensor_left,
+      sensor_right => sensor_right,
+      motor_left => motor_left,
+      motor_right => motor_right
+    );
+  end Behavioral;

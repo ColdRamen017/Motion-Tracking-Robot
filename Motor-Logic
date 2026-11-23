@@ -1,0 +1,31 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity motor_logic is
+  Port (
+    sensor_forward : in std_logic;
+    sensor_left : in std_logic;
+    sensor_right : in std_logic;
+    motor_left : out std_logic;
+    motor_right: out std_logic
+  );
+end motor_logic;
+
+architecture Behavioral of motor_logic is
+  begin
+  process(sensor_forward, sensor_left, sensor_right)
+  begin
+    if sensor_forward = '0' then
+      motor_left <= '1';
+      motor_right <= '1';
+    elsif sensor_left = '0' then
+      motor_left <= '0';
+      motor_right <= '1';
+    elsif sensor_right = '0' then
+      motor_left <= '1';
+      motor_right <= '0';
+    else
+      motor_left <= '0';
+      motor_right <= '0';
+    end if;
+  end process;
+end Behavioral;
